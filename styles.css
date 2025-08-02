@@ -1,0 +1,293 @@
+
+
+/* 1. Root Variables & Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --bg-primary: #0a0a1a;
+    --bg-secondary: rgba(20, 20, 40, 0.6);
+    --border-primary: rgba(0, 255, 255, 0.2);
+    --border-hover: rgba(0, 255, 255, 0.7);
+
+    --text-primary: #e0e0ff;
+    --text-secondary: #a0a0c0;
+    --text-accent: #00ffff; /* Neon Cyan */
+    --text-accent-glow: rgba(0, 255, 255, 0.5); /* Reduced opacity for subtler glow */
+
+    --btn-primary-bg: var(--text-accent);
+    --btn-primary-text: #0a0a1a;
+    --btn-primary-hover-bg: #99ffff;
+    
+    --btn-secondary-bg: transparent;
+    --btn-secondary-border: var(--text-accent);
+    --btn-secondary-text: var(--text-accent);
+    --btn-secondary-hover-bg: rgba(0, 255, 255, 0.1);
+
+    --btn-disabled-bg: rgba(30, 30, 60, 0.5);
+    --btn-disabled-text: #505070;
+    --btn-disabled-border: #303050;
+
+    --font-family-sans: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+/* 2. Keyframe Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 15px var(--text-accent-glow);
+    }
+    50% {
+        box-shadow: 0 0 25px var(--text-accent-glow);
+    }
+    100% {
+        box-shadow: 0 0 15px var(--text-accent-glow);
+    }
+}
+
+/* 3. Global & Body Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-primary);
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(0, 255, 255, 0.1), transparent 30%),
+        radial-gradient(circle at 85% 30%, rgba(120, 0, 255, 0.1), transparent 30%);
+    color: var(--text-primary);
+    font-family: var(--font-family-sans);
+    line-height: 1.6;
+    padding: 2rem 1rem;
+    text-align: center;
+    min-height: 100vh;
+}
+
+/* 4. Layout & Containers */
+.bigdiv {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 12px;
+    padding: 2.5rem;
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bigdiv:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.text {
+    display: block;
+    margin-top: 2rem;
+    color: var(--text-secondary);
+}
+
+/* 5. Typography */
+#heading {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    /* MODIFIED: Reduced the text-shadow for a subtler glow */
+    text-shadow: 0 0 12px var(--text-accent-glow);
+    margin: 0 auto 2.5rem auto;
+}
+
+h2.align {
+    font-size: 1.1rem;
+    font-weight: 400;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-primary);
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* For info.html */
+ul {
+    list-style-position: inside;
+    text-align: left;
+    max-width: 800px;
+    margin: 1rem auto;
+}
+li { margin-bottom: 1rem; }
+h3 { color: var(--text-accent); margin-top: 2rem; }
+b { color: var(--text-primary); }
+
+
+/* 6. Buttons & Interactive Elements */
+.button, #submitbtn, #text4 button {
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 0.8rem 2rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: inline-block;
+    letter-spacing: 0.05em;
+    transform: perspective(1px) translateZ(0); /* Fixes animation jitter */
+}
+
+.button:hover, #submitbtn:hover, #text4 button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+.button:active, #submitbtn:active, #text4 button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+
+/* Primary Button: Compress */
+#encode {
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    border: 1px solid var(--btn-primary-bg);
+}
+#encode:hover {
+    background-color: var(--btn-primary-hover-bg);
+    border-color: var(--btn-primary-hover-bg);
+    box-shadow: 0 0 20px var(--text-accent-glow);
+}
+
+/* Secondary Buttons: De-compress, Submit, etc. */
+#decode, #submitbtn, #text4 button {
+    background: var(--btn-secondary-bg);
+    border: 1px solid var(--btn-secondary-border);
+    color: var(--btn-secondary-text);
+}
+#decode:hover, #submitbtn:hover, #text4 button:hover {
+    background: var(--btn-secondary-hover-bg);
+    color: #fff;
+}
+
+/* Disabled State */
+.button:disabled, #submitbtn:disabled {
+    background-color: var(--btn-disabled-bg);
+    color: var(--btn-disabled-text);
+    border: 1px solid var(--btn-disabled-border);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* File Input */
+#fileform {
+    margin-bottom: 1rem;
+}
+.input[type="file"] {
+    color: var(--text-secondary);
+}
+.input[type="file"]::file-selector-button {
+    font-family: var(--font-family-sans);
+    font-weight: 600;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    margin-right: 1rem;
+    cursor: pointer;
+    background: var(--btn-secondary-bg);
+    border: 1px solid var(--btn-secondary-border);
+    color: var(--btn-secondary-text);
+    transition: all 0.2s ease-in-out;
+}
+.input[type="file"]::file-selector-button:hover {
+    background: var(--btn-secondary-hover-bg);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+#text1 {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+/* 7. Links */
+a {
+    color: var(--text-accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+a:hover {
+    text-shadow: 0 0 8px var(--text-accent-glow);
+}
+.links {
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+}
+.links:hover {
+    background-color: var(--btn-secondary-hover-bg);
+    border-color: var(--border-hover);
+    color: #fff;
+    text-shadow: none;
+}
+
+/* 8. Icons & Dynamic Content */
+/* Initial Step Icons */
+#step1 img, #step2 img, #step3 img {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 1.5rem auto;
+    display: block;
+    filter: drop-shadow(0 0 8px var(--text-accent-glow)) brightness(1.2);
+    transition: all 0.3s ease;
+}
+#step1 img:hover, #step2 img:hover, #step3 img:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px var(--text-accent-glow)) brightness(1.5);
+}
+
+/* JS-Generated Elements (Success Icon & Text) */
+#doneImg, .text2 {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+#doneImg {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 15px var(--text-accent-glow));
+}
+.text2 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+/* Animate the step 3 "wait" message */
+#step3 .text2 {
+    display: inline-block;
+    animation: fadeIn 0.8s ease-out forwards, pulse 2s infinite;
+}
+
+/* 9. Responsive Design */
+@media (max-width: 740px) {
+    body { padding: 1rem 0.5rem; }
+    .bigdiv { padding: 1.5rem; }
+    #heading { font-size: 1.5rem; }
+    .button { padding: 0.7rem 1.2rem; width: 80%; }
+    
+    #step2 .button {
+        display: block;
+        margin: 0.75rem auto;
+    }
+    #step2 br { display: none; }
+}
